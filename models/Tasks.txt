@@ -1,0 +1,12 @@
+start screen
+musik+sounds
+coins einsammeln
+    setpercentage ändern - aktuell energy bei allen
+
+flaschen einsammeln
+Nur schiessen wenn konto voll
+collision
+endgegner besiegen
+game over screen
+tasten erklärung
+fullscreen

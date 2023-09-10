@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./models/drawable-object.class.js"></script>
+    <script src="./models/movable-object.class.js"></script>
+    <script src="./models/status-bar.class.js"></script>
+    <script src="./models/character.class.js"></script>
+    <script src="./models/barriers.class.js"></script>
+    <script src="./models/enemy.class.js"></script>
+    <script src="./models/enemyred.class.js"></script>
+    <script src="./models/jellyfish.class.js"></script>
+    <script src="./models/world.class.js"></script>
+    <script src="./models/background-object.class.js"></script>
+    <script src="./models/keyboard.class.js"></script>
+    <script src="./models/level.class.js"></script>
+    <script src="./models/endboss.class.js"></script>
+    <script src="./models/throwable-object.class.js"></script>
+    <script src="./models/coins.class.js"></script>
+    <script src="./models/poisons.class.js"></script>
+    <script src="./models/win.class.js"></script>
+    <script src="./models/lose.class.js"></script>
+    <script src="./levels/level1.js"></script>
+    <script src="./js/game.js"></script>
+    <script src="./js/audio.js"></script>
+
+</head>
+
+<body onload="init()">
+
+    <div id="startscreen" class="startscreen d-flex">
+        <h1 id="headline" class="headline">The Adventure's of Sharkie</h1>
+        <div id="startkey" class="startkey" onclick="startGame()"></div>
+        <img id="keyexplain" class="keyexplain" src="Alternative Grafiken - Sharkie/6.Botones/Instructions 1.png"
+            alt="">
+    </div>
+
+    <div id="fullscreen" class="d-flex startscreen">
+        <div id="canvasContainer" class="canvasContainer d-none">
+            <div id="headButtons" class="headButtons">
+                <div id="soundOnInCanvas" class="soundInCanvas d-flex" onclick="muteMe()">Sound on</div>
+                <div id="soundOffInCanvas" class="soundInCanvas d-none" onclick="unMuteMe()">Sound off</div>
+                <div id="restartInCanvas" class="restartInCanvas" onclick="restartGame()">X</div>
+            </div>
+            <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+            <div id="buttons" class="buttons">
+                <img id="LEFTBTN" src="Alternative Grafiken - Sharkie/6.Botones/Key/LEFT.png" alt="">
+                <img id="UPBTN" src="Alternative Grafiken - Sharkie/6.Botones/Key/UP.png" alt="">
+                <img id="RIGHTBTN" src="Alternative Grafiken - Sharkie/6.Botones/Key/RIGHT.png" alt="">
+                <img id="DBTN" src="Alternative Grafiken - Sharkie/6.Botones/Key/D key.png" alt="">
+            </div>
+        </div>
+        
+        <div id="gameBtn" class="gameBtn d-flex">
+            <div id="fullscreenbtn" class="fullscreenbtn d-none" onclick="fullscreen()">
+            </div>
+            <div id="restartBtn" class="restartBtn d-none" onclick="restartGame()">Restart</div>
+        </div>
+    </div>
+
+
+    </canvas>
+</body>
+
+</html>

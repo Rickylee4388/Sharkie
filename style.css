@@ -1,0 +1,248 @@
+canvas {
+    background-color: black;
+    display: block;
+}
+
+@font-face {
+    font-family: 'LuckiestGuy-Regular';
+    src: url('Alternative Grafiken - Sharkie/5.Font/LuckiestGuy-Regular.ttf') format('truetype');
+}
+
+body {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 99vh;
+    font-family: 'LuckiestGuy-Regular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url('Alternative Grafiken - Sharkie/3. Background/Legacy/Layers/5. Water/L1.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-image {
+    background: url('Alternative Grafiken - Sharkie/3. Background/Legacy/Layers/5. Water/L1.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.headline {
+    text-align: center;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.startscreen {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyexplain {
+    height: 400px;
+}
+
+.startkey {
+    cursor: pointer;
+    margin-top: 40px;
+    height: 95px;
+    width: 275px;
+    content: url('Alternative Grafiken - Sharkie/6.Botones/Start/2.png');
+}
+
+.startkey:hover {
+    content: url('Alternative Grafiken - Sharkie/6.Botones/Start/1.png');
+}
+
+.restartBtn {
+    cursor: pointer;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    color: #531a82;
+    font-size: 40px;
+    height: 75px;
+    width: 275px;
+    background-color: #7fffe0;
+    border: 4px solid white;
+    border-radius: 20px;
+}
+
+.restartBtn:hover {
+    color: #ffffff;
+    background-color: #531a82;
+}
+
+.gameBtn {
+    cursor: pointer;
+    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreenbtn {
+    cursor: pointer;
+    margin-right: 10px;
+    height: 75px;
+    width: 275px;
+    content: url('Alternative Grafiken - Sharkie/6.Botones/Full Screen/Mesa de trabajo 7.png');
+}
+
+.fullscreenbtn:hover {
+    content: url('Alternative Grafiken - Sharkie/6.Botones/Full Screen/Mesa de trabajo 9.png');
+}
+
+.fullscreenbtnAfter {
+    cursor: pointer;
+    margin-top: 40px;
+    height: 75px;
+    width: 275px;
+    content: url('Alternative Grafiken - Sharkie/6.Botones/Full Screen/Mesa de trabajo 7.png');
+}
+
+.fullscreenbtnAfter:hover {
+    content: url('Alternative Grafiken - Sharkie/6.Botones/Full Screen/Mesa de trabajo 9.png');
+}
+
+.canvasContainer {
+    position: relative;
+}
+
+.buttons {
+    justify-content: space-between;
+    display: flex;
+    position: absolute;
+    bottom: 0%;
+    align-items: center;
+    right: 15%;
+    left: 15%;
+}
+
+.buttons img {
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.headButtons{
+    right: 10px;
+    position: absolute;
+    display: flex;
+    width: 155px;
+    height: 50px;
+}
+
+.restartInCanvas {
+    margin: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    color: #531a82;
+    font-size: 35px;
+    height: 45px;
+    width: 35px;
+    background-color: #7fffe0;
+    border: 4px solid white;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+}
+.soundInCanvas {
+    margin: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    color: #531a82;
+    font-size: 16px;
+    height: 45px;
+    width: 105px;
+    background-color: #7fffe0;
+    border: 4px solid white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* Smartrphone */
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    .fullscreenbtn {
+        display: none;
+    }
+
+    .fullscreenbtnAfter {
+        display: none;
+    }
+
+    .keyexplain {
+        height: 200px;
+    }
+
+    .startkey {
+        margin-top: 15px;
+        height: 75px;
+        width: 250px;
+    }
+
+    .restartBtn {
+        display: none;
+    }
+    .gameBtn{
+        display: none !important;
+    }
+}
+
+
+/* Smartrphone */
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    .fullscreenbtn {
+        display: none;
+    }
+
+    .fullscreenbtnAfter {
+        display: none;
+    }
+
+    .keyexplain {
+        height: 200px;
+    }
+
+    .startkey {
+        margin-top: 15px;
+        height: 75px;
+        width: 250px;
+    }
+
+    .restartBtn {
+        display: none;
+    }
+
+    .gameBtn{
+        display: none; !important
+    }
+}
