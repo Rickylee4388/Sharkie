@@ -81,42 +81,42 @@ class Endboss extends MovableObject {
      */
 
     animate() {
-        let h = 0;
-        let i = 0;
-        let j = 0;
-        let k = 0;
-        let l = 0;
-        let m = 0;
-        let n = 0;
+        let countIntervalForEnergy50 = 0;
+        let countIntervalForIntroduction = 0;
+        let countIntervalForEnergy70 = 0;
+        let countIntervalForEnergy40 = 0;
+        let countIntervalForEnergy10 = 0;
+        let countIntervalForDead = 0;
+        let countIntervalForEnergy20 = 0;
 
         setInterval(() => {
             if (world.character.x > 1550 && this.energyEndboss == 100) {
-                this.introduction(i);
-                i++;
+                this.introduction(countIntervalForIntroduction);
+                countIntervalForIntroduction++;
             }
             if (this.energyEndboss == 70) {
-                this.attack(j);
-                j++;
+                this.attack(countIntervalForEnergy70);
+                countIntervalForEnergy70++;
             }
             if (this.energyEndboss == 50) {
-                this.attack(h);
-                h++;
+                this.attack(countIntervalForEnergy50);
+                countIntervalForEnergy50++;
             }
             if (this.energyEndboss == 40) {
-                this.attack(k);
-                k++;
+                this.attack(countIntervalForEnergy40);
+                countIntervalForEnergy40++;
             }
             if (this.energyEndboss == 20) {
-                this.attack(n);
-                n++;
+                this.attack(countIntervalForEnergy20);
+                countIntervalForEnergy20++;
             }
             if (this.energyEndboss == 10) {
-                this.attack(l);
-                l++;
+                this.attack(countIntervalForEnergy10);
+                countIntervalForEnergy10++;
             }
             if (this.energyEndboss <= 0) {
-                this.dead(m);
-                m++
+                this.dead(countIntervalForDead);
+                countIntervalForDead++
             }
         }, 150);
     }
