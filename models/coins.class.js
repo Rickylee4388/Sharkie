@@ -1,3 +1,7 @@
+/**
+ * creates coins 
+ */
+
 class Coin extends MovableObject{
     IMAGES_COINS_FLOAT = [
         'Alternative Grafiken - Sharkie/4. Marcadores/1. Coins/1.png',
@@ -16,6 +20,11 @@ class Coin extends MovableObject{
         this.width = 50;
 
     }
+
+    /**
+     * plays images as animation
+     */
+
     animate(){
         setInterval(()=>{
         this.playAnimation(this.IMAGES_COINS_FLOAT);

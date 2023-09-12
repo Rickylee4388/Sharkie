@@ -14,10 +14,21 @@ let dead_sound = new Audio('audio/lose.wav');
 let hurt_sound = new Audio('audio/character_hurt.wav');
 let bubble_sound = new Audio('audio/bubble.mp3');
 
+/**
+ * initialising the start page
+ */
 
 function init() {
     canvas = document.getElementById('canvas');
 }
+
+/**
+ * Game canvas is created (world) and displayed in index.html
+ * setTimeout is used because the loading time of the images takes a second
+ * 
+ * @param {class} world creates all elements needed in the world
+ * 
+ */
 
 function startGame() {
     initLevel();
@@ -34,9 +45,18 @@ function startGame() {
     }, 1000);
 }
 
+/**
+ * 
+ * reloads canvas and all elements. parameters set back to zero
+ */
+
 function restartGame() {
     location.reload();
 }
+
+/**
+ * adds eventlistener for keyboard if key down
+ */
 
 document.addEventListener('keydown', (event) => {
     if (event.keyCode == 39) {
@@ -57,10 +77,12 @@ document.addEventListener('keydown', (event) => {
     if (event.keyCode == 68) {
         keyboard.D = true;
     }
-
 });
 
-// TOUCH NOT WORKING
+/**
+ * adds eventlistener for touch
+ */
+
 function addTouch(){
     document.getElementById('LEFTBTN').addEventListener('touchstart', (event) => {
         event.preventDefault();
@@ -104,6 +126,9 @@ function addTouch(){
     });
 }
 
+/**
+ * adds eventlistener for keyboard if not pressed
+ */
 
 document.addEventListener('keyup', (event) => {
     if (event.keyCode == 39) {
@@ -132,6 +157,10 @@ function fullscreen() {
     document.getElementById('fullscreen').classList.add('bg-image');
 }
 
+/**
+ * starts fullscreen mode
+ */
+
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -144,6 +173,10 @@ function enterFullscreen(element) {
     }
 }
 
+/**
+ * exit fullscreen mode
+ */
+
 function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -152,6 +185,11 @@ function exitFullscreen() {
         document.webkitExitFullscreen();
     }
 }
+
+/**
+ * sets all sounds volume to zero
+ * @param {audio} all all values are audio files
+ */
 
 function muteMe() {
     changeImgSoundOn();
@@ -168,12 +206,21 @@ function muteMe() {
     bubble_sound.volume = 0;
 }
 
+/**
+ * changes sound image to 'on' in index.html
+ */
+
 function changeImgSoundOn(){
     document.getElementById('soundOnInCanvas').classList.add('d-none');
     document.getElementById('soundOnInCanvas').classList.remove('d-flex');
     document.getElementById('soundOffInCanvas').classList.remove('d-none');
     document.getElementById('soundOffInCanvas').classList.add('d-flex');
 }
+
+/**
+ * sets all sounds volume to one
+ * @param {audio} all all values are audio files
+ */
 
 function unMuteMe() {
     changeImgSoundOff();
@@ -189,6 +236,10 @@ function unMuteMe() {
     hurt_sound.volume = 1;
     bubble_sound.volume = 1;
 }
+
+/**
+ * changes sound image to 'off' in index.html
+ */
 
 function changeImgSoundOff(){
     document.getElementById('soundOnInCanvas').classList.remove('d-none');

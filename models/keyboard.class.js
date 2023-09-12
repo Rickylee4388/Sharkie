@@ -1,3 +1,7 @@
+/**
+ * creates keyboard values
+ */
+
 class Keyboard{
 LEFT = false;
 RIGHT = false;

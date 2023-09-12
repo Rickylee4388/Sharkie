@@ -1,3 +1,7 @@
+/**
+ * creates level
+ */
+
 class Level{
     enemies;
     barriers;

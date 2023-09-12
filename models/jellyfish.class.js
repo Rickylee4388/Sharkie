@@ -1,3 +1,7 @@
+/**
+ * creates enemie (jellyfish)
+ */
+
 class Jellyfish extends MovableObject {
     energyEnemie = 100;
     IMAGES_WALKING = [
@@ -28,6 +32,10 @@ class Jellyfish extends MovableObject {
         this.setStartPosition();
         this.setProperties();
     }
+    
+    /**
+     * loads all image arrays of enemie
+     */
 
     loadAllImages() {
         this.loadImages(this.IMAGES_WALKING);
@@ -35,26 +43,47 @@ class Jellyfish extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
     }
 
+    /**
+     * sets height and width of enemie
+     */
+
     setProperties() {
         this.height = 80;
         this.width = 80;
     }
+
+    /**
+     * sets position in canvas (x,y)
+     */
 
     setStartPosition() {
         this.x = 550 + Math.random() * 1600;
         this.y = 250 - Math.random() * 200;
     }
 
+    /**
+     * animates images of enemie
+     */
+
     animate() {
         this.moveInterval();
         this.statusAnimation();
     }
+
+    /**
+     * sets interval so animation looks good 
+     */
 
     moveInterval() {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     }
+
+    /**
+     * if enemie hit by bubble energy set to 50%
+     * second hit -> enemie dead
+     */
 
     statusAnimation() {
         setInterval(() => {
@@ -70,10 +99,19 @@ class Jellyfish extends MovableObject {
         }, 100);
     }
 
+    /**
+     * animates enemie if hit by bubble
+     * @param {number} i  counts interval to change images
+     */
+
     enemieHitOnceAnimation() {
         this.playAnimation(this.IMAGES_HURTONCE); //big fish animation
         this.speed = 0.15 + Math.random() * 1.5;
     }
+
+    /**
+     * plays animation if enemie is dead
+     */
 
     enemieDeadAnimation() {
         if (this.enemiedeadsound == true) {
@@ -86,6 +124,10 @@ class Jellyfish extends MovableObject {
         this.y -= this.speedY;
     }
 
+    /**
+     * plays animation if enemie swims
+     */
+    
     swimAnimation() {
         this.playAnimation(this.IMAGES_WALKING);
         this.speed = 0.15 + Math.random() * 0.25;

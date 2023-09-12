@@ -1,3 +1,7 @@
+/**
+ * creates world
+ */
+
 class World {
     character = new Character();
     canvas;
@@ -11,14 +15,22 @@ class World {
     win = new Win();
     lose = new Lose();
 
+    /**
+     * loads canvas and draws objects
+     * @param {canvas} canvas 
+     */
+
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
         this.run();
-
     }
+
+    /**
+     * runs the intervals for the game
+     */
 
     run() {
         setInterval(() => {
@@ -32,9 +44,24 @@ class World {
             }
         }, 140);
     }
+
+    /**
+     * 
+     * @returns if throwable objects exist in ctx
+     */
+
     throwableObjectsExist() {
         return this.throwableObjects.length > 0
     }
+
+    /**
+     * checks how long ago last bubble was thrown
+     * only possible every 500ms
+     * 
+     * if not thrown for 500ms new bubble will be created
+     * else nothing happens
+     * @returns back to main function
+     */
 
     checkThrow() {
         if (this.keyboard.D) {
@@ -56,6 +83,12 @@ class World {
         }
     }
 
+    /**
+     * only three poison bubbles are given
+     * if used up normal bubbles will be thrown
+     * statusbar of poison will be set to zero
+     */
+
     checkIfPoisonBubblesLeft() {
         if (this.amountPoisonBubbles > 0 && this.character.poisonBar == 0) { //if Poisonbubbles left reduce by one
             this.amountPoisonBubbles--
@@ -66,10 +99,20 @@ class World {
         }
     }
 
+    /**
+     *  new bubble is generated an add to array
+     */
+
     createNewBubble() {
         this.bubble = new ThrowableObject(this.character.x + 200, this.character.y + 70, this.character.poisonBar);
         this.throwableObjects.push(this.bubble);
     }
+
+    /**
+     * checks if character is hit by enemie
+     * set percentage of character if is hit
+     * 
+     */
 
     checkCollision() {
         this.level.enemies.forEach((enemy) => { // check if character touches any of all enemies
@@ -81,15 +124,37 @@ class World {
         });
     }
 
+    /**
+     * 
+     * @param {class} enemy 
+     * @param {number} number of enemie in array
+     * @returns true/false
+     */
+
     ifNormalEnemy(enemy, number) {
         return this.character.isColliding(enemy) && this.level.enemies[number].energyEnemie > 0;
     }
+
+    /**
+     * 
+     * @param {class} enemy 
+     * @param {number} number of enemie in array
+     * @returns true/false
+     */
 
     ifEndboss(enemy, number) {
         return this.character.isColliding(enemy) && this.level.enemies[number].energyEndboss > 0
     }
 
-    checkCollisionCoinsAndPoison(a, c) { //check if character hits floating object. Deletes this object and sets Statusbar
+    /**
+     * check if character hits floating object. 
+     * Deletes this object and sets Statusbar
+     * 
+     * @param {string} a image path 
+     * @param {string} c coin/poison
+     */
+
+    checkCollisionCoinsAndPoison(a, c) {
         a.forEach((object) => {
             if (this.character.isColliding(object)) {
                 if (c == 'coin') {
@@ -108,10 +173,13 @@ class World {
         });
     }
 
-    checkCollisionBarrier() {       //check if character hits barrier
+    /**
+     * check if character hits barrier
+     */
+
+    checkCollisionBarrier() {
         this.level.barriers.forEach((barrier) => {
             if (this.character.isColliding(barrier)) {
-                console.log('BLOCKED');
                 this.character.isBlocked = true;
             }
             else {
@@ -120,41 +188,76 @@ class World {
         });
     }
 
-    checkCollisionBubble() { //check if bubble hits enemie/endboss
+    /**
+     * check if bubble hits enemie/endboss
+     * if endboss dead no collision
+     * if enemy dead no collision
+     * 
+     */
+
+    checkCollisionBubble() {
         let i = this.throwableObjects.length - 1;
         let throwableObject = this.throwableObjects[i];
         this.level.enemies.forEach((enemy) => {
             if (throwableObject.isColliding(enemy)) {
                 let number = this.level.enemies.indexOf(enemy);
-                if (enemy instanceof Endboss && this.ifEndbossAlive(number)) {//if endboss dead no collision
+                if (enemy instanceof Endboss && this.ifEndbossAlive(number)) {
                     this.collisionEndboss(i, number);
                 }
-                else if (this.ifEnemyAlive(number)) { //if enemy dead no collision
+                else if (this.ifEnemyAlive(number)) {
                     this.collisionEnemy(i, number);
                 }
-                console.log('bubble hit');
             }
         });
     }
+
+    /**
+     * is endboss alive
+     * @param {number} number of enemie in array
+     * @returns true /false 
+     */
 
     ifEndbossAlive(number) {
         return this.level.enemies[number].energyEndboss > 0;
     }
 
+    /**
+     * 
+     * @param {number} i number of position in array throwableobjects
+     * @param {number} number of position in array enemies
+     */
+
     collisionEndboss(i, number) {
         this.level.enemies[number].hitEndboss(i);
-        console.log(this.level.enemies[number].energyEndboss);
         this.throwableObjects.splice(this.throwableObjects[i], 1);
     }
+
+    /**
+   * is enemie alive
+   * @param {number} number of enemie in array
+   * @returns true /false 
+   */
 
     ifEnemyAlive(number) {
         return this.level.enemies[number].energyEnemie > 0;
     }
 
+    /**
+     * 
+     * @param {number} i number of position in array throwableobjects
+     * @param {number} number of position in array enemies
+     */
+
     collisionEnemy(i, number) {
         this.level.enemies[number].hitEnemie();
         this.throwableObjects.splice(this.throwableObjects[i], 1);
     }
+
+    /**
+     * draws canvas
+     * draws all images in canvas 
+     * 
+     */
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //clear canvas
@@ -169,6 +272,10 @@ class World {
         });
     }
 
+    /**
+     * adds all movable objects to canvas
+     */
+
     addMovableObjects() {
         this.addObject(this.level.backgroundObjects);
         this.addObject(this.level.barriers);
@@ -178,6 +285,10 @@ class World {
         this.addObject(this.level.coinImg);
         this.addObject(this.level.poisonImg);
     }
+
+    /**
+     * adds all fixed objects to canvas
+     */
 
     drawfixedObjects() {
         this.addObject(this.level.statusbar);
@@ -192,43 +303,76 @@ class World {
         }
     }
 
+    /**
+     * if game win
+     * @returns true
+     */
+
     ifWin() {
         return this.level.enemies[7].energyEndboss == 0;
     }
+
+    /**if game lost
+     * @returns true
+     */ 
 
     ifLose() {
         return this.character.energy == 0;
     }
 
+    /**
+     * 
+     * @param {*} objects 
+     */
     addObject(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * 
+     * @param {class} mo draws movable objects like character or enemie
+     * if borders around objects should be drawn uncomment mo.drawborder(this.ctx)
+     */
+
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawBorder(this.ctx);
+        // mo.drawBorder(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
+    
+    /**
+     * Doesn't work directly. Therefor "this" is integrated
+    */
 
     setWorld() {
         this.character.world = this;
     }
 
-    flipImage(mo) {         // flip image if mo is changing direction
+    /**
+     * flip image if mo is changing direction
+     * @param {class} mo (character)
+     */
+
+    flipImage(mo) {        
         this.ctx.save();
         this.ctx.translate(mo.width, 0)
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
     }
 
-    flipImageBack(mo) {     // flip image if mo is changing direction again
+    /**
+     * flip image if mo is changing direction again
+     * @param {class} mo (character)
+     */
+
+    flipImageBack(mo) {    
         mo.x = mo.x * -1;
         this.ctx.restore();
     }

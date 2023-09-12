@@ -1,3 +1,7 @@
+/**
+ * creates character (Sharkie) 
+ */
+
 class Character extends MovableObject {
     speed = 5;
     height = 250;
@@ -65,9 +69,6 @@ class Character extends MovableObject {
     ];
 
     world;
-    // walking_sound = new Audio('audio/swim.mp3');
-    // dead_sound = new Audio('audio/lose.wav');
-    // hurt_sound = new Audio('audio/character_hurt.wav');
     deadsound = true;
 
     constructor() {
@@ -77,6 +78,10 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    /**
+     * loads images
+     */
+
     loadAllImages() {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_STANDING);
@@ -85,11 +90,20 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK_BUBBLE);
     }
 
+    /**
+     * plays images as animation
+     */
+
     animate() {
-        this.fastAnimation(); //intervall 1000/60 (16,67)
-        this.slowAnimation(); //intervall 150
-        this.attackAnimation(); //intervall 50
+        this.fastAnimation();
+        this.slowAnimation(); 
+        this.attackAnimation(); 
     }
+    
+    /**
+     * plays images as animation interval is faster to make the animation look smooth
+     * intervall 1000/60 (16,67)
+     */
 
     fastAnimation() {
         setInterval(() => {
@@ -100,6 +114,11 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x;
         }, 1000 / 60);
     }
+    
+    /**
+     * plays images as animation interval is slower to make the animation look smooth
+     * interval 150
+     */
 
     slowAnimation() {
         let i = 0;
@@ -124,6 +143,11 @@ class Character extends MovableObject {
         }, 150);
     }
 
+    /**
+     * plays images as animation for whale attack
+     * intervall 50
+     */
+
     attackAnimation() {
         setInterval(() => {
             if (this.world.keyboard.D) {
@@ -132,7 +156,12 @@ class Character extends MovableObject {
         }, 50);
     }
 
-    move() {        //move left and right
+    /**
+     * lets character move left or right by pressing buttons
+     * 
+     */
+
+    move() {        
         if (this.isFreeToMoveRightAndAlive()) {
             this.moveRight();
             walking_sound.play();
@@ -144,14 +173,30 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * @returns if anything is in the way of character and if character is alive
+     * 
+     */
+
     isFreeToMoveRightAndAlive() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead() && this.isBlocked == false;
     }
+    
+    /**
+     * @returns if anything is in the way of character and if character is alive
+     * 
+     */
+
     isFreeToMoveLeftAndAlive() {
         return this.world.keyboard.LEFT && this.x > 0 && !this.isDead() && this.isBlocked == false;
     }
 
-    blocked() {     //Character is blocked by Barrier
+    /**
+     * Character is blocked by Barrier and bounces back if hits barrier
+     * 
+     */
+
+    blocked() {     
         if (this.hitsBarrierMovingRight()) {
             this.x -= 12; //bounce back
             this.playAnimation(this.IMAGES_HURT);
@@ -162,18 +207,42 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * 
+     * @returns if character is blocked on the right side
+     */
+
     hitsBarrierMovingRight() {
         return this.isBlocked == true && this.world.keyboard.RIGHT;
     }
+    
+    /**
+     * 
+     * @returns if character is blocked on the left side
+     */
+    
     hitsBarrierMovingLeft() {
         return this.isBlocked == true && this.world.keyboard.LEFT;
     }
+
+    /**
+     * character swims upwards if button is pressed
+     * 
+     */
 
     jumpAnimation() {
         if (this.world.keyboard.UP && this.isOnTop() && !this.isDead()) {
             this.jump();
         }
     }
+
+    /**
+     * character swims upsidedown to the top
+     * dead animation played
+     * dead sound played
+     * @param {i} number counting intervals to change images
+     * 
+     */
 
     dead(i) { //Character is dead
         if (i < 9) { // Play transformation from alive to dead

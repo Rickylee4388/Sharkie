@@ -1,3 +1,7 @@
+/**
+ * creates barriers 
+ */
+
 class Barrier extends MovableObject {
     height = 200;
     y=300;

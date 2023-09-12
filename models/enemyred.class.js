@@ -1,3 +1,7 @@
+/**
+ * creates enemie (red fish)
+ */
+
 class EnemyRed extends MovableObject {
     energyEnemie = 100;
     IMAGES_WALKING = [
@@ -26,8 +30,6 @@ class EnemyRed extends MovableObject {
     ];
     enemiedeadsound = true;
     
-
-
     constructor() {
         super().loadImage('Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.loadAllImages();
@@ -35,6 +37,10 @@ class EnemyRed extends MovableObject {
         this.setStartPosition();
         this.setProperties();
     }
+    
+    /**
+     * loads all image arrays of enemie
+     */
 
     loadAllImages() {
         this.loadImages(this.IMAGES_WALKING);
@@ -43,26 +49,47 @@ class EnemyRed extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
     }
 
+    /**
+     * sets height and width of enemie
+     */
+
     setProperties() {
         this.height = 80;
         this.width = 80;
     }
+
+    /**
+     * sets position in canvas (x,y)
+     */
 
     setStartPosition() {
         this.x = 600 + Math.random() * 1400;
         this.y = 380 - Math.random() * 100;
     }
 
+    /**
+     * animates images of enemie
+     */
+
     animate() {
         this.moveInterval();
         this.statusAnimation();
     }
+
+    /**
+     * sets interval so animation looks good 
+     */
 
     moveInterval() {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     }
+
+    /**
+     * if enemie hit by bubble energy set to 50%
+     * second hit -> enemie dead
+     */
 
     statusAnimation() {
         let i = 0;
@@ -80,6 +107,11 @@ class EnemyRed extends MovableObject {
         }, 100);
     }
 
+    /**
+     * animates enemie if hit by bubble
+     * @param {number} i  counts interval to change images
+     */
+
     enemieHitOnceAnimation(i) {
         if (i < 5) {
             this.playAnimation(this.IMAGES_TRANSITION_GREEN); //transition to big fish
@@ -92,6 +124,10 @@ class EnemyRed extends MovableObject {
         }
     }
 
+    /**
+     * plays animation if enemie is dead
+     */
+
     enemieDeadAnimation() {
         if (this.enemiedeadsound == true) {
             enemiedead_sound.play();
@@ -103,6 +139,10 @@ class EnemyRed extends MovableObject {
         this.y -= this.speedY;
     }
 
+    /**
+     * plays animation if enemie swims
+     */
+    
     swimAnimation() {
         this.playAnimation(this.IMAGES_WALKING);
         this.speed = 0.15 + Math.random() * 0.25;

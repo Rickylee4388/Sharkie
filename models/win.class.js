@@ -1,3 +1,7 @@
+/**
+ * creates win screen
+ */
+
 class Win extends MovableObject{
 
     width = 720;

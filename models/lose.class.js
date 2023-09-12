@@ -1,3 +1,7 @@
+/**
+ * creates lost screen
+ */
+
 class Lose extends MovableObject{
 
     width = 300;

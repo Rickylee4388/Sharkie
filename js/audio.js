@@ -10,6 +10,11 @@ let dead_sound = new Audio('audio/lose.wav');
 let hurt_sound = new Audio('audio/character_hurt.wav');
 let bubble_sound = new Audio('audio/bubble.mp3');
 
+/**
+ * All sounds volume is set to zero (muted)
+ * @param {object} all objects are audio files
+ */
+
 function muteMe() {
     changeImgSoundOn();
     endbosshurt_sound.volume = 0;
@@ -25,12 +30,23 @@ function muteMe() {
     bubble_sound.volume = 0;
 }
 
+/**
+ * Change image to show that sound volume is turned on
+ * * div container in index.html is displayed/undisplayed
+ * 
+ */
+
 function changeImgSoundOn(){
     document.getElementById('soundOnInCanvas').classList.add('d-none');
     document.getElementById('soundOnInCanvas').classList.remove('d-flex');
     document.getElementById('soundOffInCanvas').classList.remove('d-none');
     document.getElementById('soundOffInCanvas').classList.add('d-flex');
 }
+
+/**
+ * All sounds volume is set to 1 (unmuted)
+ * @param {object} all objects are audio files
+ */
 
 function unMuteMe() {
     changeImgSoundOff();
@@ -46,6 +62,11 @@ function unMuteMe() {
     hurt_sound.volume = 1;
     bubble_sound.volume = 1;
 }
+
+/**
+ * Change image to show that sound volume is turned on
+ * div container in index.html is displayed/undisplayed
+ */
 
 function changeImgSoundOff(){
     document.getElementById('soundOnInCanvas').classList.remove('d-none');

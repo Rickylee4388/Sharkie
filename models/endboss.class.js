@@ -1,12 +1,12 @@
+/**
+ *  creates endboss
+ */
+
 class Endboss extends MovableObject {
     height = 400;
     width = 300;
     energyEndboss = 100;
     world;
-    // endbosshurt_sound = new Audio('audio/enemy_hit.wav');
-    // intro_sound = new Audio('audio/killerintro.wav');
-    // attack_sound = new Audio('audio/attack.wav');
-    // win_sound = new Audio('audio/winner.wav')
 
     IMAGES_INTRODUCTION = [
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -20,6 +20,7 @@ class Endboss extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/10.png',
     ];
+
     IMAGES_ATTACK = [
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/2.png',
@@ -27,15 +28,15 @@ class Endboss extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/4.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/5.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/6.png',
-
     ];
+
     IMAGES_HURT = [
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/2.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/3.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/4.png',
-
     ];
+
     IMAGES_DEAD = [
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
@@ -45,6 +46,7 @@ class Endboss extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2.png',
 
     ];
+
     IMAGES_WALKING = [
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/2.png',
@@ -73,6 +75,10 @@ class Endboss extends MovableObject {
         this.y = 0;
         this.animate();
     }
+
+    /**
+     * plays images as animation
+     */
 
     animate() {
         let h = 0;
@@ -115,6 +121,11 @@ class Endboss extends MovableObject {
         }, 150);
     }
 
+    /**
+     * animates introduction of the endboss
+     * @param {number} i counts intervals to change images
+     */
+
     introduction(i) {
         if (i < 10) {
             if (i == 0) {
@@ -128,6 +139,11 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * animates bubble hits endboss
+     * @param {number} j counts intervals to change images
+     */
+
     attack(j) {
         if (j < 4) {
             this.endbossHurt(j);
@@ -140,12 +156,22 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * animates if endboss is hurt
+     * @param {number} j counts intervals to change images
+     */
+
     endbossHurt(j) {
         this.playAnimation(this.IMAGES_HURT);
         if (j == 0) {
             endbosshurt_sound.play();
         }
     }
+
+    /**
+    * animates endboss attacking character
+    * @param {number} j counts intervals to change images
+    */
 
     endbossAttack(j) {
         if (j == 4) {
@@ -159,6 +185,11 @@ class Endboss extends MovableObject {
             this.x += 70;
         }
     }
+
+    /**
+    * animates endboss is dead
+    * @param {number} m counts intervals to change images
+    */
 
     dead(m) {
         if (m < 6) {

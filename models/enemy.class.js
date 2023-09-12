@@ -1,3 +1,7 @@
+/**
+ * creates enemie (green fish)
+ */
+
 class Enemy extends MovableObject {
     energyEnemie = 100;
     IMAGES_WALKING = [
@@ -13,7 +17,7 @@ class Enemy extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition3.png',
         'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition4.png',
         'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition5.png',
-    ]
+    ];
     IMAGES_HURTONCE = [
         'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png',
@@ -25,7 +29,6 @@ class Enemy extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png'
     ];
     enemiedeadsound = true;
-    // enemiedead_sound = new Audio('audio/enemy_hit.wav');
 
     constructor() {
         super().loadImage('Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
@@ -35,6 +38,10 @@ class Enemy extends MovableObject {
         this.setProperties();
     }
 
+    /**
+     * loads all image arrays of enemie
+     */
+
     loadAllImages() {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_TRANSITION_GREEN);
@@ -42,26 +49,47 @@ class Enemy extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
     }
 
+    /**
+     * sets height and width of enemie
+     */
+
     setProperties() {
         this.height = 80;
         this.width = 80;
     }
+
+    /**
+     * sets position in canvas (x,y)
+     */
 
     setStartPosition() {
         this.x = 350 + Math.random() * 1500;
         this.y = 400 - Math.random() * 300;
     }
 
+    /**
+     * animates images of enemie
+     */
+
     animate() {
         this.moveInterval();
         this.statusAnimation();
     }
+
+    /**
+     * sets interval so animation looks good 
+     */
 
     moveInterval() {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     }
+
+    /**
+     * if enemie hit by bubble energy set to 50%
+     * second hit -> enemie dead
+     */
 
     statusAnimation(){
         let i = 0;
@@ -79,6 +107,11 @@ class Enemy extends MovableObject {
         }, 100);
     }
 
+    /**
+     * animates enemie if hit by bubble
+     * @param {number} i  counts interval to change images
+     */
+
     enemieHitOnceAnimation(i){
         if (i < 5) {
             this.playAnimation(this.IMAGES_TRANSITION_GREEN); //transition to big fish
@@ -91,6 +124,10 @@ class Enemy extends MovableObject {
         }
     }
 
+    /**
+     * plays animation if enemie is dead
+     */
+
     enemieDeadAnimation(){
         if (this.enemiedeadsound == true) {
             enemiedead_sound.play();       
@@ -102,6 +139,10 @@ class Enemy extends MovableObject {
         this.y -= this.speedY;
     }
 
+    /**
+     * plays animation if enemie swims
+     */
+    
     swimAnimation(){
         this.playAnimation(this.IMAGES_WALKING);
         this.speed = 0.15 + Math.random() * 0.25;

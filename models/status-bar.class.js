@@ -1,7 +1,12 @@
+/**
+ * creates status bar of life, coin and poison
+ */
+
 class StatusBar extends DrawableObject{
     y = 0;
     type;
     IMAGES = [];
+    percentage = 100;
     IMAGES_LIFE = [
         'Alternative Grafiken - Sharkie/4. Marcadores/green/Life/0_  copia 3.png',
         'Alternative Grafiken - Sharkie/4. Marcadores/green/Life/20_ copia 4.png',
@@ -28,7 +33,11 @@ class StatusBar extends DrawableObject{
         'Alternative Grafiken - Sharkie/4. Marcadores/green/poisoned bubbles/20_ copia 3.png',
         'Alternative Grafiken - Sharkie/4. Marcadores/green/poisoned bubbles/0_ copia 2.png'
     ];
-    percentage = 100;
+ 
+    /**
+     * 
+     * @param {} a coin life or poison is entered
+     */
 
     constructor(a){
         super();
@@ -47,29 +56,51 @@ class StatusBar extends DrawableObject{
         this.width = 150;  
     }
 
+    /**
+     * coinbar is displayed in a fixed position in canvas
+     */
+
     loadCoinBar(){
         this.IMAGES = this.IMAGES_COIN;
         this.y = 50;
         this.loadImages(this.IMAGES_COIN);
     }
 
+    /**
+     * lifebar is displayed in a fixed position in canvas
+     */
+    
     loadLifeBar(){
         this.IMAGES = this.IMAGES_LIFE;
         this.y = 10;
         this.loadImages(this.IMAGES_LIFE);
     }
 
+    /**
+     * poisonbar is displayed in a fixed position in canvas
+     */
+    
     loadPoisonBar(){
         this.IMAGES = this.IMAGES_POISON;
         this.y = 100;
         this.loadImages(this.IMAGES_POISON);
     }
 
+    /**
+     * status of bar is set
+     * @param {number} percentage number between 0 and 100 to show the value as bar
+     */
+
     setPercentage(percentage){ // setPercentage(50) example
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img =this.imageChache[path];
     }
+
+    /**
+     * statusbar is loaded by using concrete image 
+     * @returns imageindex to pick the correct image for statusbar
+     */
 
     resolveImageIndex(){
         if(this.percentage ==100){
