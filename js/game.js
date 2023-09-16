@@ -21,8 +21,10 @@ function init() {
  */
 
 function startGame() {
-    initLevel();
-    world = new World(canvas);
+    setTimeout(() => {
+        initLevel();
+        world = new World(canvas);
+    }, 1000);
     setTimeout(() => {
         document.getElementById('canvasContainer').classList.remove('d-none');
         document.getElementById('canvas').classList.remove('d-none');
@@ -73,46 +75,38 @@ document.addEventListener('keydown', (event) => {
  * adds eventlistener for touch
  */
 
-function addTouch(){
+function addTouch() {
     document.getElementById('LEFTBTN').addEventListener('touchstart', (event) => {
         event.preventDefault();
-        console.log('left button touched');
-        keyboard.LEFT = true;     
+        keyboard.LEFT = true;
     });
     document.getElementById('LEFTBTN').addEventListener('touchend', (event) => {
-        console.log('left button not touched');
         event.preventDefault();
-            keyboard.LEFT = false;
+        keyboard.LEFT = false;
     });
     document.getElementById('UPBTN').addEventListener('touchstart', (event) => {
         event.preventDefault();
-        console.log('UP button touched');
-        keyboard.UP = true;     
+        keyboard.UP = true;
     });
     document.getElementById('UPBTN').addEventListener('touchend', (event) => {
-        console.log('UP button not touched');
         event.preventDefault();
-            keyboard.UP = false;
+        keyboard.UP = false;
     });
     document.getElementById('RIGHTBTN').addEventListener('touchstart', (event) => {
         event.preventDefault();
-        console.log('R button touched');
-        keyboard.RIGHT = true;     
+        keyboard.RIGHT = true;
     });
     document.getElementById('RIGHTBTN').addEventListener('touchend', (event) => {
-        console.log('R button not touched');
         event.preventDefault();
-            keyboard.RIGHT = false;
+        keyboard.RIGHT = false;
     });
     document.getElementById('DBTN').addEventListener('touchstart', (event) => {
         event.preventDefault();
-        console.log('D button touched');
-        keyboard.D = true;     
+        keyboard.D = true;
     });
     document.getElementById('DBTN').addEventListener('touchend', (event) => {
-        console.log('D button not touched');
         event.preventDefault();
-            keyboard.D = false;
+        keyboard.D = false;
     });
 }
 

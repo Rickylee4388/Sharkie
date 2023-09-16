@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sharkie</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/1.png">
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/status-bar.class.js"></script>
@@ -38,8 +39,9 @@
         <img id="keyexplain" class="keyexplain" src="Alternative Grafiken - Sharkie/6.Botones/Instructions 1.png"
             alt="">
     </div>
-    <div id="turnDisplay" class="turnDisplay">
-        Turn display to play!
+    <div id="rotate-device" class="rotate-device" >
+        <img src="Alternative Grafiken - Sharkie/landscape.png">
+        <span>Please rotate device to landscape mode!</span>
     </div>
 
     <div id="fullscreen" class="d-flex startscreen">
@@ -47,8 +49,9 @@
             <div id="headButtons" class="headButtons">
                 <div id="soundOnInCanvas" class="soundInCanvas d-flex" onclick="muteMe()">Sound on</div>
                 <div id="soundOffInCanvas" class="soundInCanvas d-none" onclick="unMuteMe()">Sound off</div>
-                <div id="restartInCanvas" class="restartInCanvas" onclick="restartGame()">X</div>
+                <div id="restartInCanvas" class="restartInCanvas" onclick="restartGame()">Restart</div>
             </div>
+
             <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
             <div id="buttons" class="buttons">
                 <img id="LEFTBTN" src="Alternative Grafiken - Sharkie/6.Botones/Key/LEFT.png" alt="">

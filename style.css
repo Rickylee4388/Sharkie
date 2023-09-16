@@ -9,6 +9,7 @@ canvas {
 }
 
 body {
+    margin: 0;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -125,7 +126,7 @@ body {
 
 .buttons {
     justify-content: space-between;
-    display: flex;
+    display: none;
     position: absolute;
     bottom: 0%;
     align-items: center;
@@ -145,20 +146,20 @@ body {
     right: 10px;
     position: absolute;
     display: flex;
-    width: 155px;
+    width: 200px;
     height: 50px;
 }
 
 .restartInCanvas {
+    font-size: 16px;
     margin: 10px;
     cursor: pointer;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
     color: #531a82;
-    font-size: 35px;
-    height: 45px;
-    width: 35px;
+    height: 30px;
+    width: 90px;
     background-color: #7fffe0;
     border: 4px solid white;
     border-radius: 20px;
@@ -173,12 +174,19 @@ body {
     align-items: center;
     color: #531a82;
     font-size: 16px;
-    height: 45px;
+    height: 30px;
     width: 105px;
     background-color: #7fffe0;
     border: 4px solid white;
     border-radius: 20px;
     text-align: center;
+}
+
+.rotate-device{
+    display: none;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
 }
 
 /* Smartrphone */
@@ -200,7 +208,7 @@ body {
     }
 
     .startkey {
-        margin-top: 15px;
+        margin-top: 5px;
         height: 75px;
         width: 250px;
     }
@@ -210,6 +218,9 @@ body {
     }
     .gameBtn{
         display: none !important;
+    }
+    .buttons {
+        display: flex;
     }
 }
 
@@ -233,7 +244,7 @@ body {
     }
 
     .startkey {
-        margin-top: 15px;
+        margin-top: 5px;
         height: 75px;
         width: 250px;
     }
@@ -244,5 +255,46 @@ body {
 
     .gameBtn{
         display: none; !important
+    }
+    .buttons {
+        display: flex;
+    }
+}
+
+/* Portrait orientation */
+@media screen and (orientation: portrait) and (max-width: 720px) {
+
+    .rotate-device{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        top: 0;
+        bottom: 0;
+        margin: 0;
+        background: url('Alternative Grafiken - Sharkie/3. Background/Legacy/Layers/5. Water/L1.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    .rotate-device img{
+        height: 5%;
+        margin-bottom: 20%;
+    }
+    .keyexplain{
+        width: 100%;
+    }
+    .startkey{
+        width: 100%;
+    }
+    .headline{
+        width: 100%;
+    }
+    .startscreen {
+        width: 100%;
     }
 }
